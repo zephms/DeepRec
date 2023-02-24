@@ -1,0 +1,20 @@
+name: DeepRec Build
+on:
+  push:
+    branches:
+      - build
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build CPP
+        run: sh compile_proccesor_github.sh
+      - name: Save Reault
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-without-markdown
+          path: |
+            configure.py
